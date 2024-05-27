@@ -5,7 +5,7 @@ import javax.persistence.*;
 import org.openxava.annotations.*;
 
 import lombok.*;
-@View(name = "Simple",
+@View(
 members=
 "nombre,nif;" +
 "basico { basico}" + 
