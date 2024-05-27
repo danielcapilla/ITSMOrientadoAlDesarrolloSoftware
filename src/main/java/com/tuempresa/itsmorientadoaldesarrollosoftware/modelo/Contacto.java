@@ -1,4 +1,4 @@
-package com.tuempresa.itsmorientadoaldesarrollosoftware.run;
+package com.tuempresa.itsmorientadoaldesarrollosoftware.modelo;
 
 import javax.persistence.*;
 
