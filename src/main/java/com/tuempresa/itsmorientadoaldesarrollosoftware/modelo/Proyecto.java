@@ -14,7 +14,7 @@ import lombok.*;
 + "estado;" 
 + "fechaDeInicio,fechaFinal;"
 + "clave;"
-+ "asignarProyectosAUnContacto;"
++ "contactos;"
 + "tags;"
 )
 @Entity @Getter @Setter
@@ -47,9 +47,9 @@ public class Proyecto extends Identificable{
     @Id @Column(length=9)
     String clave;
 	 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList
-	Contacto asignarProyectosAUnContacto;
+    @ManyToOne(fetch=FetchType.LAZY, optional = true)
+    @DescriptionsList()
+	Contacto contactos;
     
     // Mas adelante se tiene que cambiar (creo)
     @Column(length=50)
