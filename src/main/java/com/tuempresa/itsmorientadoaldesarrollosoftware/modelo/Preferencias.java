@@ -12,7 +12,7 @@ members=
     "cuentaDeVentas; cuentaDeCompras;" +
     "referencia;"
     		+ "]"
-     +"pago"+"["+"formaDePago;vencimiento;" +  
+     +"pago"+"[#"+"formaDePago;vencimiento;" +  
      "descuento, tarifa;"+
      "diaDePago;"+
      "mostrarNombreComercialEnFacturas; mostrarPaisEnFacturas" +
@@ -92,7 +92,7 @@ enum TiposDeCuentas {
 }
 enum TiposDeFormasDePago {
 	Contado,
-	Trasferencia;
+	Transferencia;
 }
 enum TiposDeVencimientos {
 	MismoDía,

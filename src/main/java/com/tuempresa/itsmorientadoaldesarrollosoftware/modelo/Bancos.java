@@ -10,7 +10,7 @@ import lombok.*;
 @View( name="Bancos1", 
 members= 
 		"banco, iban, swift;" +
-				"RemesasSEPA"+"["+"ref, fechaMandato;" + "];"+
+				"RemesasSEPA"+"[#"+"ref, fechaMandato;" + "];"+
 				"bancoPredeterminado;"
     )
 @Embeddable

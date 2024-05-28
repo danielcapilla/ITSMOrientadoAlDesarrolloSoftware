@@ -42,7 +42,7 @@ public class Basico {
 	@Required
     TiposDePaises pais;
 
-    @Email
+    @Email@DisplaySize(25) 
     String email;
 
     @Column(length = 10)
