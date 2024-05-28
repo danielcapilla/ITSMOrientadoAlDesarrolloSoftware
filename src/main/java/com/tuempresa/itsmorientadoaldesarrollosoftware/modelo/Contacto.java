@@ -9,7 +9,8 @@ import lombok.*;
 members=
 "nombre,nif;" +
 "basico { basico}" + 
-"bancos { bancos}"	
+"bancos { bancos}" +
+"preferencias { preferencias}"
 )
 @Entity @Getter @Setter
 public class Contacto extends Identificable{
