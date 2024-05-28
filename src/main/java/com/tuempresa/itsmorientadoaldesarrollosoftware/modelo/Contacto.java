@@ -21,7 +21,11 @@ public class Contacto extends Identificable{
 	@ReferenceView("Pedidos1")
 	Basico basico;
 	
-	@Embedded
+	@Embedded 
 	@ReferenceView("Bancos1")
 	Bancos bancos;
+	
+	@Embedded
+	@ReferenceView("Preferencias1")
+	Preferencias preferencias;
 }

@@ -25,40 +25,42 @@ members=
 @Getter @Setter
 public class Basico {
 
-    @Column(length = 100)
+    @Column(length = 25)
     String direccion;
 
     @Column(length = 10)
     String codigoPostal;
 
-    @Column(length = 50)
+    @Column(length = 10)
     String poblacion;
 
-    @Column(length = 50)
+    @Column(length = 10)
     String provincia;
 
-    @Column(length = 50)
-    String pais;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 10)
+	@Required
+    TiposDePaises pais;
 
     @Email
     String email;
 
-    @Column(length = 20)
+    @Column(length = 10)
     String telefono;
 
-    @Column(length = 20)
+    @Column(length = 10)
     String movil;
     
-    @Column(length = 50)
+    @Column(length = 25)
     String website;
     
-    @Column(length = 50)
+    @Column(length = 25)
     String tags;
     
-    @Column(length = 50)
+    @Column(length = 25)
     String nombreComercial;
     
-    @Column(length = 50)
+    @Column(length = 25)
     String identificacionVat;
     
 	@Enumerated(EnumType.STRING)
@@ -72,4 +74,11 @@ enum TiposDeContacto {
 	Lead,
 	Deudor,
 	Acreedor;
+}
+enum TiposDePaises {
+	España,
+	Francia,
+	Inglaterra,
+	Italia,
+	Alemania;
 }
