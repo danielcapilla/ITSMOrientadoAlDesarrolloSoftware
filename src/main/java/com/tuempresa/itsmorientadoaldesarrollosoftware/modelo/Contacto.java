@@ -10,7 +10,8 @@ members=
 "nombre,nif;" +
 "basico { basico}" + 
 "bancos { bancos}" +
-"preferencias { preferencias}"
+"preferencias { preferencias}" +
+"contabilidad { contabilidad}"
 )
 @Entity @Getter @Setter
 public class Contacto extends Identificable{
@@ -29,4 +30,8 @@ public class Contacto extends Identificable{
 	@Embedded
 	@ReferenceView("Preferencias1")
 	Preferencias preferencias;
+	
+	@Embedded
+	@ReferenceView("Contabilidad1")
+	Contabilidad contabilidad;
 }

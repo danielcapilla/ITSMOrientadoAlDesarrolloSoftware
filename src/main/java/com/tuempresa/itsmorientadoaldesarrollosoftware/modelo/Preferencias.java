@@ -12,7 +12,7 @@ members=
     "cuentaDeVentas; cuentaDeCompras;" +
     "referencia;"
     		+ "]"
-     +"pago"+"[#"+"formaDePago;vencimiento;" +  
+     +"pago"+"["+"formaDePago;vencimiento;" +  
      "descuento, tarifa;"+
      "diaDePago;"+
      "mostrarNombreComercialEnFacturas; mostrarPaisEnFacturas" +
@@ -35,15 +35,15 @@ public class Preferencias {
 	@Required
 	TiposDeMonedas moneda;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(length = 15)
-	@Required
-	TiposDeCuentas cuentaDeVentas;
+	@ManyToOne(fetch=FetchType.LAZY, optional = true)
+	@DescriptionsList()
+	@ReferenceView("Simple")
+	PlanContable cuentaDeVentas;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(length = 15)
-	@Required
-	TiposDeCuentas cuentaDeCompras;
+	@ManyToOne(fetch=FetchType.LAZY, optional = true)
+	@DescriptionsList()
+	@ReferenceView("Simple")
+	PlanContable cuentaDeCompras;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 15)
@@ -86,9 +86,6 @@ enum TiposDeMonedas {
 	GBP,
 	JPY,
 	MXN;
-}
-enum TiposDeCuentas {
-	PlanContable;
 }
 enum TiposDeFormasDePago {
 	Contado,
