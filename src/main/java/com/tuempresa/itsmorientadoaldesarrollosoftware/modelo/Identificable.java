@@ -16,6 +16,6 @@ public class Identificable {
     @Column(length=32)
     String oid; // oid para la clase maestra
  
-    @Column(length=50)
+    @Column(length=20)
     String nombre;
 }

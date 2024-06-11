@@ -44,7 +44,7 @@ public class Proyecto extends Identificable{
     @Required
     LocalDate fechaFinal;
     
-    @Id @Column(length=9)
+    @Column(length=9)
     String clave;
 	 
     @ManyToOne(fetch=FetchType.LAZY, optional = true)

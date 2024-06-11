@@ -21,4 +21,9 @@
     </controlador>
     -->
     
+    <controlador nombre="Incidente">
+    <hereda-de controlador="Typical"/>
+        <accion nombre="CambiarEstado" clase="com.tuempresa.itsmorientadoaldesarrollosoftware.acciones.CambiarEstados" />
+    </controlador>
+    
 </controladores>
