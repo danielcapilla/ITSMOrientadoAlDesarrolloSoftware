@@ -6,15 +6,13 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
-import com.tuempresa.itsmorientadoaldesarrollosoftware.acciones.*;
+import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
-
-
+@View(members= "estadoActual;trans;")
 @Tabs({
-    @Tab(name = "Abierto", baseCondition = "${estado}='ABIERTO'"),
-    @Tab(name = "Pendiente", baseCondition = "${estado}='PENDIENTE'")
+    @Tab(name = "Abierto", baseCondition = "${transicion}='Crear'"),
 })
 @Entity @Getter @Setter
 public class Incidente {
@@ -29,23 +27,25 @@ public class Incidente {
 	@Column(length=20)
 	@Required
 	@DefaultValueCalculator(EstadoInicial.class)
-	TiposDeEstados estado = TiposDeEstados.ABIERTO;
+	@ReadOnly
+	TiposDeEstados estadoActual;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length=20)
 	@Required
-	TiposDeTransicion transicion = TiposDeTransicion.Crear;
+	@ReadOnly
+	@DefaultValueCalculator(EstadoInicial.class)
+	TiposDeEstados estadoSiguiente;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+    @DescriptionsList(descriptionProperties="nombre",
+            condition="${nombre} = ?",
+            depends="trans")
+    @DefaultValueCalculator(value = TransicionInicial.class)
+    Transicion trans;
+	
+
+	
 	
 }
 
-enum TiposDeTransicion {
-    Crear,
-    Investigar,
-    Pendiente,
-    Resolver,
-    Volver_A_Trabajo_En_Progreso,
-    CanCancelar,
-    Cancelar,
-    Cerrar
-
-}

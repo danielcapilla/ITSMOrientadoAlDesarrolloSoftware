@@ -20,10 +20,16 @@
                 clase="acciones.CrearProfesor"/>        
     </controlador>
     -->
-    
+    <!--  
     <controlador nombre="Incidente">
     <hereda-de controlador="Typical"/>
         <accion nombre="CambiarEstado" clase="com.tuempresa.itsmorientadoaldesarrollosoftware.acciones.CambiarEstados" />
+    </controlador>
+    -->
+    
+    <controlador nombre="Incidente2">
+    <hereda-de controlador="Typical"/>
+        <accion nombre="AccionFiltrarEstados" clase="com.tuempresa.itsmorientadoaldesarrollosoftware.acciones.AccionFiltrarEstados" />
     </controlador>
     
 </controladores>

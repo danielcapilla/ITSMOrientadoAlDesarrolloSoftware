@@ -12,19 +12,19 @@ public class CambiarEstados extends ViewBaseAction {
         Incidente incidente = XPersistence.getManager().find(Incidente.class, getView().getValue("oid"));
         TiposDeEstados nuevoEstado = TiposDeEstados.valueOf(getView().getValueString("estado"));
         System.out.print(nuevoEstado);
-        if (incidente.getEstado() == TiposDeEstados.ABIERTO) {
+        if (incidente.getEstadoSiguiente() == TiposDeEstados.ABIERTO) {
             if (nuevoEstado != TiposDeEstados.TRABAJO_EN_CURSO && nuevoEstado != TiposDeEstados.PENDIENTE) {
                 addError("Transición no permitida");
                 return;
             }
-        } else if (incidente.getEstado() == TiposDeEstados.PENDIENTE) {
+        } else if (incidente.getEstadoSiguiente() == TiposDeEstados.PENDIENTE) {
             if (nuevoEstado != TiposDeEstados.CANCELADO && nuevoEstado != TiposDeEstados.TRABAJO_EN_CURSO) {
                 addError("Transición no permitida");
                 return;
             }
         }
         try {
-            incidente.setEstado(nuevoEstado);
+            incidente.setEstadoSiguiente(nuevoEstado);
             XPersistence.getManager().merge(incidente);
             addMessage("Estado cambiado con éxito");
         } catch (IllegalArgumentException e) {
