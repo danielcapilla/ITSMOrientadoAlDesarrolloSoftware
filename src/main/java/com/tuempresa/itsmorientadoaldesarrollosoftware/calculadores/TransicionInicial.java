@@ -5,12 +5,22 @@ import javax.persistence.*;
 import org.openxava.calculators.*;
 import org.openxava.jpa.*;
 
+import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.*;
+
 public class TransicionInicial implements ICalculator {
-	 private static final long serialVersionUID = 1L;
-	    @Override
+	 //private static final long serialVersionUID = 1L;
+	 //@Getter@Setter
+	 //TiposDeEstados estadoActual;
+
 	    public Object calculate() throws Exception {
-	    	Query query = XPersistence.getManager().createQuery("SELECT t FROM Transicion t WHERE t.nombre = :nombre");
-	        query.setParameter("nombre", "Crear");
-	        return query.getSingleResult();
+	    	//System.out.print(estadoActual);
+	    	Query query = XPersistence.getManager().createQuery("select t from Transicion t order by t.nombre");
+	        query.setMaxResults(1);
+
+	        // Ejecuta la consulta
+	        Transicion transicion = (Transicion) query.getSingleResult();
+	        // Comprueba si la transición es null antes de acceder a su id
+	        System.out.print(transicion.getNombre());
+	        return transicion.getNombre(); // Devuelve el id (nombre) de la transición
 	    }
 }

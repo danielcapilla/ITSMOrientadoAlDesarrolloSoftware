@@ -10,10 +10,7 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
-@View(members= "estadoActual;trans;")
-@Tabs({
-    @Tab(name = "Abierto", baseCondition = "${transicion}='Crear'"),
-})
+@View(members= "estadoActual;estadoSiguiente;trans;")
 @Entity @Getter @Setter
 public class Incidente {
 	
@@ -32,20 +29,24 @@ public class Incidente {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length=20)
-	@Required
 	@ReadOnly
 	@DefaultValueCalculator(EstadoInicial.class)
 	TiposDeEstados estadoSiguiente;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList(descriptionProperties="nombre",
-            condition="${nombre} = ?",
-            depends="trans")
-    @DefaultValueCalculator(value = TransicionInicial.class)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@DescriptionsList(descriptionProperties="nombre",
+    condition="${nombre} = ?",
+    depends="trans")
+	@DefaultValueCalculator(
+		    value=TransicionInicial.class
+		)
     Transicion trans;
 	
+	@Depends("estadoActual") // Cuando usuario cambie producto o cantidad
+	public void getImporte() { // esta propiedad se recalculará y se redibujará
+	    if (estadoActual == null || estadoActual == TiposDeEstados.ABIERTO) System.out.print("HOLA");
+	    System.out.print("TETE");
+	}
 
-	
-	
 }
 
