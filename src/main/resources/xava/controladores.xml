@@ -27,9 +27,5 @@
     </controlador>
     -->
     
-    <controlador nombre="Incidente2">
-    <hereda-de controlador="Typical"/>
-        <accion nombre="AccionFiltrarEstados" clase="com.tuempresa.itsmorientadoaldesarrollosoftware.acciones.AccionFiltrarEstados" />
-    </controlador>
     
 </controladores>

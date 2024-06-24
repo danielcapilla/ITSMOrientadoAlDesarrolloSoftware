@@ -1,14 +1,11 @@
 package com.tuempresa.itsmorientadoaldesarrollosoftware.acciones;
 
 import org.openxava.actions.*;
-import org.openxava.jpa.*;
-
-import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.*;
-import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 public class CambiarEstados extends ViewBaseAction {
 
     public void execute() throws Exception {
+    	/*
         Incidente incidente = XPersistence.getManager().find(Incidente.class, getView().getValue("oid"));
         TiposDeEstados nuevoEstado = TiposDeEstados.valueOf(getView().getValueString("estado"));
         System.out.print(nuevoEstado);
@@ -29,7 +26,8 @@ public class CambiarEstados extends ViewBaseAction {
             addMessage("Estado cambiado con éxito");
         } catch (IllegalArgumentException e) {
             addError(e.getMessage());
-        }
+        }*/
+    	System.out.print("HOLA");
     }
 }
 

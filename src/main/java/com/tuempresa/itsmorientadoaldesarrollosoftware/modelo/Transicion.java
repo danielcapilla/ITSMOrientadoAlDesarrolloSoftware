@@ -11,5 +11,12 @@ public class Transicion {
 	@Id
 	String nombre;
 	
-	
+	// Constructor para crear una instancia con nombre específico
+    public Transicion(String nombre) {
+        this.nombre = nombre;
+    }
+
+    // Constructor vacío (necesario para JPA)
+    public Transicion() {
+    }
 }

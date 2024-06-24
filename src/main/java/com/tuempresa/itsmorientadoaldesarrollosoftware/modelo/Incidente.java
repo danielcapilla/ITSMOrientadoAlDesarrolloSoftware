@@ -10,7 +10,7 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
-@View(members= "estadoActual;estadoSiguiente;trans;")
+@View(members= "estadoActual;trans;estadoSiguiente;")
 @Entity @Getter @Setter
 public class Incidente {
 	
@@ -27,25 +27,29 @@ public class Incidente {
 	@ReadOnly
 	TiposDeEstados estadoActual;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(length=20)
-	@ReadOnly
-	@DefaultValueCalculator(EstadoInicial.class)
-	TiposDeEstados estadoSiguiente;
+	//@Enumerated(EnumType.STRING)
+	//@Column(length=20)
+	//@ReadOnly
+	//@DefaultValueCalculator(EstadoInicial.class)
+	//TiposDeEstados estadoSiguiente;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@DescriptionsList(descriptionProperties="nombre",
     condition="${nombre} = ?",
-    depends="trans")
+    depends="estadoActual")
 	@DefaultValueCalculator(
-		    value=TransicionInicial.class
+		    value=TransicionInicial.class, // Esta clase calcula el valor inicial
+		    		properties=
+		    	    @PropertyValue(name="estadoAct", from = "estadoActual")
 		)
     Transicion trans;
 	
-	@Depends("estadoActual") // Cuando usuario cambie producto o cantidad
-	public void getImporte() { // esta propiedad se recalculará y se redibujará
-	    if (estadoActual == null || estadoActual == TiposDeEstados.ABIERTO) System.out.print("HOLA");
-	    System.out.print("TETE");
+	
+	@Depends("estadoActual, trans")  // When the user changes product or quantity
+	public TiposDeEstados getEstadoSiguiente() {
+		System.out.print("SOY CALCULADA \n");// this property is recalculated and redisplayed
+	    if (trans == null) return TiposDeEstados.ABIERTO;
+	    return TiposDeEstados.CANCELADO; 
 	}
 
 }

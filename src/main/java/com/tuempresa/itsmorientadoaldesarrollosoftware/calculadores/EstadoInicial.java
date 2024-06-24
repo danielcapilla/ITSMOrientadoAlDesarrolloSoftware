@@ -7,6 +7,7 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 public class EstadoInicial implements ICalculator {
     @Override
     public Object calculate() throws Exception {
+    	System.out.print("SOY ESTADO INICIAL \n");
         return TiposDeEstados.ABIERTO;
     }
 }
