@@ -7,10 +7,10 @@ import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
-import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
-@View(members= "estadoActual;trans;estadoSiguiente;")
+//@View(members= "estadoActual;trans;estadoSiguiente;estado;")
+@View(members= "estado;")
 @Entity @Getter @Setter
 public class Incidente {
 	
@@ -20,19 +20,19 @@ public class Incidente {
     @Column(length=32)
     String oid;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(length=20)
-	@Required
-	@DefaultValueCalculator(EstadoInicial.class)
-	@ReadOnly
-	TiposDeEstados estadoActual;
+	//@Enumerated(EnumType.STRING)
+	//@Column(length=20)
+	//@Required
+	//@DefaultValueCalculator(EstadoInicial.class)
+	//@ReadOnly
+	//TiposDeEstados estadoActual;
 	
 	//@Enumerated(EnumType.STRING)
 	//@Column(length=20)
 	//@ReadOnly
 	//@DefaultValueCalculator(EstadoInicial.class)
 	//TiposDeEstados estadoSiguiente;
-	
+	/*
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@DescriptionsList(descriptionProperties="nombre",
     condition="${nombre} = ?",
@@ -42,15 +42,22 @@ public class Incidente {
 		    		properties=
 		    	    @PropertyValue(name="estadoAct", from = "estadoActual")
 		)
-    Transicion trans;
-	
-	
+    Transicion trans;*/
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@DescriptionsList(descriptionProperties="nombre",
+		    condition="${nombre} = ?",
+		    depends="estado")
+	//@ElementCollection
+	@DefaultValueCalculator(value=EstadosInicial.class)
+	//@ListProperties("nombre, estadoPadre, transicion")
+	Estados estado;
+	/*
 	@Depends("estadoActual, trans")  // When the user changes product or quantity
 	public TiposDeEstados getEstadoSiguiente() {
 		System.out.print("SOY CALCULADA \n");// this property is recalculated and redisplayed
 	    if (trans == null) return TiposDeEstados.ABIERTO;
 	    return TiposDeEstados.CANCELADO; 
-	}
+	}*/
 
 }
 
