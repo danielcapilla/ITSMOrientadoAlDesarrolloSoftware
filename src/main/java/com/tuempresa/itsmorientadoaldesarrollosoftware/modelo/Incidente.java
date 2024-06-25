@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
+import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
+
 import lombok.*;
 
 @View(members= "estado;numero")
@@ -22,8 +24,14 @@ public class Incidente {
 	int numero;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@DescriptionsList(descriptionProperties="nombre")
-	//@DefaultValueCalculator(value=EstadosInicial.class)
+	@DescriptionsList(descriptionProperties="nombre",
+			condition = "${nombre} = ?",
+            depends = "estado")
+	
+	@DefaultValueCalculator(value=EstadosInicial.class,
+			properties=@PropertyValue(
+	    	        name="estadoP", 
+	    	        from="estado"))
 	Estados estado;
 	
 	@PrePersist

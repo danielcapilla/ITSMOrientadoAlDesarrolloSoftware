@@ -7,8 +7,14 @@ import org.openxava.jpa.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.*;
 
+import lombok.*;
+
 
 public class EstadosInicial implements ICalculator{
+	
+	@Getter @Setter
+	Estados estadoP;
+	
 	@Override
     public Object calculate() throws Exception {
 
