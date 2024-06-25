@@ -19,7 +19,7 @@ public class EstadosInicial implements ICalculator{
         // Ejecuta la consulta
         Estados estado = (Estados) query.getSingleResult();
         // Comprueba si la transición es null antes de acceder a su id
-        System.out.print(estado.getNombre()+"\n");
+        //System.out.print(estado.getNombre()+"\n");
         if(estado.getEstadoPadre() == null)
         {
         	return estado.getNombre(); // Devuelve el id (nombre) de la transición
