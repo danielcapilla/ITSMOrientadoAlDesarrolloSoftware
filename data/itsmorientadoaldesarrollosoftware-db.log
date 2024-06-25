@@ -1,5 +1,2 @@
 /*C3*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C4*/SET SCHEMA PUBLIC
-alter table Estados add column trans_nombre varchar(20)
-alter table Estados add constraint FKnnejvsyf0x3osr6mi9ymkepll foreign key (trans_nombre) references Transicion

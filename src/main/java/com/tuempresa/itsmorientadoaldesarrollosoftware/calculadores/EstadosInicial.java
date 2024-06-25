@@ -7,11 +7,12 @@ import org.openxava.jpa.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.*;
 
-public class EstadosInicial implements ICalculator{
 
+public class EstadosInicial implements ICalculator{
 	@Override
     public Object calculate() throws Exception {
-		//System.out.print(estadoAct);
+
+		//System.out.print("HOLAAAA"+"\n");
         Query query;
         query = XPersistence.getManager().createQuery("select e from Estados e where e.nombre = 'ABIERTO'");
         query.setMaxResults(1);
@@ -19,12 +20,17 @@ public class EstadosInicial implements ICalculator{
         // Ejecuta la consulta
         Estados estado = (Estados) query.getSingleResult();
         // Comprueba si la transición es null antes de acceder a su id
-        System.out.print(estado.getNombre()+"\n");
-        if(estado.getEstadoPadre() == null)
+        System.out.print(estado.getEstadoPadre()+"\n");
+        if(estado.getEstadoPadre().isEmpty())
         {
+        	System.out.print("JAJA"+"\n");
         	return estado.getNombre(); // Devuelve el id (nombre) de la transición
         }
-        
+        else if (estado.getEstadoPadre() == "ABIERTO")
+        {
+        	System.out.print("JEJE"+"\n");
+        }
+        System.out.print("JOJO"+"\n");
         return estado.getNombre(); // Devuelve el id (nombre) de la transición
     }
 }

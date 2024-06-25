@@ -5,7 +5,7 @@ import javax.persistence.*;
 import org.openxava.annotations.*;
 
 import lombok.*;
-@View(members= "nombre,estadoPadre;transicion;trans;")
+@View(members= "nombre,estadoPadre;transicion;")
 @Entity @Getter @Setter
 public class Estados {
 
@@ -21,7 +21,4 @@ public class Estados {
 	@Column(length = 20)
 	@Required
 	String transicion;
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@DescriptionsList
-	Transicion trans;
 }
