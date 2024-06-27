@@ -14,11 +14,8 @@ public class EstadoInicial implements ICalculator{
         Query query;
         query = XPersistence.getManager().createQuery("select e from Estado e where e.estado = 'ABIERTO'");
         query.setMaxResults(1);
-
-        // Ejecuta la consulta
         Estado estado = (Estado) query.getSingleResult();
-        // Comprueba si la transición es null antes de acceder a su id
-        //System.out.print(estado.getNombre()+"\n");
+        System.out.print(estado.getEstadoPadre()+"ESTADO PADRE "+"\n");
        
         return estado.getEstadoPadre(); // Devuelve el id (nombre) de la transición
     }

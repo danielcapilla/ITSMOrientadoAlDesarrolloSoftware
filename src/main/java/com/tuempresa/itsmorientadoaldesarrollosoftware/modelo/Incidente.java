@@ -21,8 +21,8 @@ public class Incidente {
     String oid; // oid para la clase maestra
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@DescriptionsList(descriptionProperties="estado",
-		    condition="${estadoPadre} = ?",
+	@DescriptionsList(descriptionProperties="estado, transicion",
+		    condition="${estadoPadre}=?",
 		    depends="estadoActual")
 
 	@DefaultValueCalculator(value=EstadoInicial.class)
@@ -38,12 +38,7 @@ public class Incidente {
 	        List<Estado> estados = query.getResultList();
 
 	        if (!estados.isEmpty()) {
-	        	if (estadoActual.getEstado().isEmpty()) {
-	            	System.out.print("SAAA" +"\n");
-	                this.estadoActual = estados.get(0);;
-	                System.out.print(estadoActual.getEstado()+"\n");
-	            }
-	        	else if (estadoActual.getEstado().equals("ABIERTO"))
+	        	 if (estadoActual.getEstado().equals("ABIERTO"))
 	            {
 	            	System.out.print("SUUUI" +"\n");
 	            	this.estadoActual = estados.get(1);
