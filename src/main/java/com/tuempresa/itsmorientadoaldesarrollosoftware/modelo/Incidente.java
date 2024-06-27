@@ -15,6 +15,7 @@ import lombok.*;
 
 @Entity@Getter@Setter
 public class Incidente {
+	
 	@Id @GeneratedValue(generator="system-uuid") @Hidden
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(length=32)
@@ -22,10 +23,11 @@ public class Incidente {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList(descriptionProperties="estado, transicion",
-		    condition="${estadoPadre}=?",
+		    condition="${estadoPadre}= ? ",
 		    depends="estadoActual")
 
 	@DefaultValueCalculator(value=EstadoInicial.class)
+	@Required
 	Estado estadoActual;
 
 	@PostLoad
