@@ -16,7 +16,8 @@ public class EstadoInicial implements ICalculator{
         query.setMaxResults(1);
         Estado estado = (Estado) query.getSingleResult();
         System.out.print(estado.getEstadoPadre()+"ESTADO PADRE "+"\n");
-       
-        return estado.getEstadoPadre(); // Devuelve el id (nombre) de la transición
+        System.out.print(estado.getTransicion()+"transicion "+"\n");
+        System.out.print(estado.getEstado()+"ESTADO "+"\n");
+        return estado; // Devuelve el id (nombre) de la transición
     }
 }

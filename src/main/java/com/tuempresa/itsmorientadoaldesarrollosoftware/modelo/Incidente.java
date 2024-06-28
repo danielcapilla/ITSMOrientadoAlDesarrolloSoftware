@@ -24,10 +24,10 @@ public class Incidente {
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList(descriptionProperties="estado, transicion",
 		    condition="${estadoPadre}= ? ",
-		    depends="estadoActual")
+		    depends="estadoActual.estadoPadre")
 
 	@DefaultValueCalculator(value=EstadoInicial.class)
-	@Required
+	//@Required
 	Estado estadoActual;
 
 	@PostLoad
