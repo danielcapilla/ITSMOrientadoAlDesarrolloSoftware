@@ -1,22 +1,20 @@
 package com.tuempresa.itsmorientadoaldesarrollosoftware.modelo;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 
-import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 
 import lombok.*;
 
+@View(members=
+"solicitante; enunciado; descripcion;estadoInicial, estadoSiguiente;"+
+"servicioAfectado;documentos;"
+)
 @Entity@Getter@Setter
-public class Incidente {
+public class Incidente extends Solicitud {
 	
-	@Id @GeneratedValue(generator="system-uuid") @Hidden
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(length=32)
-    String oid; // oid para la clase maestra
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DefaultValueCalculator(value=EstadoInicial.class)
@@ -30,6 +28,7 @@ public class Incidente {
 
 	Estado estadoSiguiente;
 	
+
 	@PostLoad
 	private void recalcularEstadoInicial() {
 		if(this.estadoSiguiente != null)

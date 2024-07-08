@@ -1,22 +1,39 @@
 package com.tuempresa.itsmorientadoaldesarrollosoftware.modelo;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 
-import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
+import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
+
 import lombok.*;
-
+@View(members=
+"solicitante; enunciado; descripcion;estadoInicial, estadoSiguiente;"+
+"servicioAfectado;documentos;"
+)
 @Entity @Getter @Setter
-public class Asistencia {
+public class Asistencia extends Solicitud {
 
-	@Id @GeneratedValue(generator="system-uuid") @Hidden
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(length=32)
-    String oid;
 	
-	@Column(length=20)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@DefaultValueCalculator(value=EstadoInicial.class)
 	@Required
-	String estado;
+	@ReadOnly
+	Estado estadoInicial;
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@DescriptionsList(showReferenceView=true, descriptionProperties="estado",
+		    condition="${estadoPadre}= ? ",
+		    depends="estadoInicial.estado")
+
+	Estado estadoSiguiente;
+	
+
+	@PostLoad
+	private void recalcularEstadoInicial() {
+		if(this.estadoSiguiente != null)
+		{
+			this.estadoInicial = this.estadoSiguiente;
+		}
+		
+	}
 }
