@@ -8,7 +8,6 @@ public class AccionCambiarPantalla extends OnChangePropertyBaseAction{
 
 	public void execute() throws Exception
 	{
-		System.out.print("HOLAAAA"+getNewValue());
 		TiposDeSolicitud solicitud = (TiposDeSolicitud) getNewValue();
 		if(solicitud != null)
 		{

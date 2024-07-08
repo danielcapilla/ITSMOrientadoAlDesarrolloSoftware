@@ -19,7 +19,7 @@ public class Solicitud {
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList()
 	Usuario solicitante;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList()
 	Servicio servicioAfectado;
@@ -31,4 +31,5 @@ public class Solicitud {
     @Files
     @Column(length=32) 
     String documentos;
+    
 }
