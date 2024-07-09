@@ -38,7 +38,6 @@ public class Asistencia extends Solicitud {
 		if(this.transicion != null)
 		{
 			this.estadoPadre = this.transicion.getEstado();
-			System.out.print(estadoPadre);
 		}
 		
 	}
