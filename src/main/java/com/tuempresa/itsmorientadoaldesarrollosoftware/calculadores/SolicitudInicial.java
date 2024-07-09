@@ -20,7 +20,11 @@ public class SolicitudInicial implements ICalculator{
 		{
 			nombre = "Asistencia";
 		}
-		System.out.print(nombre);
+		else if(nombreSolicitud.equals("3"))
+		{
+			nombre = "Cambio";
+		}
+
 		return nombre;
 	}
 }
