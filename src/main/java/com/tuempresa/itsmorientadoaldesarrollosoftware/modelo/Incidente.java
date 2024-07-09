@@ -20,12 +20,13 @@ public class Incidente extends Solicitud {
 	@DefaultValueCalculator(value=EstadoInicial.class)
 	@Required
 	@ReadOnly
+	@ReferenceView("SinOperacion")
 	Estado estadoInicial;
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList(showReferenceView=true, descriptionProperties="estado",
-		    condition="${estadoPadre}= ? ",
+		    condition="${estadoPadre}= ? and ${operacion} = 'Incidente'",
 		    depends="estadoInicial.estado")
-
+	@ReferenceView("SinOperacion")
 	Estado estadoSiguiente;
 	@Column(length=15)
 	@ReadOnly

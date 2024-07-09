@@ -8,24 +8,21 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 
 import lombok.*;
 @View(members=
-"solicitante; enunciado; descripcion;tipoDeSolicitud;estadoInicial, estadoSiguiente;"+
+"solicitante; enunciado; descripcion;tipoDeSolicitud;estadoPadre; transicion;"+
 "servicioAfectado;documentos;"
 )
 @Entity @Getter @Setter
 public class Asistencia extends Solicitud {
 
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@DefaultValueCalculator(value=EstadoInicial.class)
-	@Required
 	@ReadOnly
-	Estado estadoInicial;
+	@Column(length=20)
+	String estadoPadre;
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@DescriptionsList(showReferenceView=true, descriptionProperties="estado",
-		    condition="${estadoPadre}= ? ",
-		    depends="estadoInicial.estado")
-
-	Estado estadoSiguiente;
+	@DescriptionsList( descriptionProperties="transicion",
+		    condition="${estadoPadre}= ? and ${operacion} = 'Asistencia'",
+		    depends="estadoPadre")
+	//@ReferenceView("SoloTrans")
+	Estado transicion;
 	@Column(length=15)
 	@ReadOnly
 	@DefaultValueCalculator(
@@ -38,9 +35,10 @@ public class Asistencia extends Solicitud {
 
 	@PostLoad
 	private void recalcularEstadoInicial() {
-		if(this.estadoSiguiente != null)
+		if(this.transicion != null)
 		{
-			this.estadoInicial = this.estadoSiguiente;
+			this.estadoPadre = this.transicion.getEstado();
+			System.out.print(estadoPadre);
 		}
 		
 	}

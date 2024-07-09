@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
-import lombok.*;
+import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
+import lombok.*;
+@View( name="SoloTrans", 
+members=                        
+    "estado;" 
+)
 @Entity@Getter@Setter
 public class Estado {
 
@@ -26,4 +31,9 @@ public class Estado {
 	@Column(length=25)
 	@Required
 	String transicion;
+	
+    @Enumerated(EnumType.STRING)
+	@Column(length = 15)
+    @Required
+    TiposDeSolicitud operacion;
 }
