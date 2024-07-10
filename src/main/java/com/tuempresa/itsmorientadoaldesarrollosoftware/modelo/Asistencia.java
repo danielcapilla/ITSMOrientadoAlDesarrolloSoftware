@@ -5,6 +5,7 @@ import javax.persistence.*;
 import org.openxava.annotations.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
+import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
 @View(members=
@@ -32,7 +33,9 @@ public class Asistencia extends Solicitud {
 	        	        value="2") // ... se llena con el valor de producto.numero de la entidad
 	        	)
 	String tipoDeSolicitud;
-
+    @Column(length=32) 
+    @ReadOnly
+    TiposDeSolicitud operacion;
 	@PostLoad
 	private void recalcularEstadoInicial() {
 		if(this.transicion != null)

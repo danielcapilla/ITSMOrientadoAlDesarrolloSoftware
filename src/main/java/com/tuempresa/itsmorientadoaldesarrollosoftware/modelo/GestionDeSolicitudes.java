@@ -23,7 +23,6 @@ public class GestionDeSolicitudes {
 	@Column(length = 15)
     @OnChange(AccionCambiarPantalla.class)
     TiposDeSolicitud operacion;
-    @Column(length = 15)
-    String operacionP;
+
     
 }
