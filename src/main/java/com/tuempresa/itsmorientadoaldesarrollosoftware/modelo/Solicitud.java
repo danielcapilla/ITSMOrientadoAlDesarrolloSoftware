@@ -7,6 +7,7 @@ import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
 import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
+import com.tuempresa.itsmorientadoaldesarrollosoftware.modelo.Enums.*;
 
 import lombok.*;
 
@@ -34,5 +35,8 @@ public class Solicitud {
     @Files
     @Column(length=32) 
     String documentos;
+    @Column(length=32) 
+    @ReadOnly
+    TiposDeSolicitud operacion;
     
 }

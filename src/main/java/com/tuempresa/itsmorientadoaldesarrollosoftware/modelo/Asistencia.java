@@ -9,7 +9,7 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 import lombok.*;
 @View(members=
 "solicitante; enunciado; descripcion;tipoDeSolicitud;estadoPadre; transicion;"+
-"servicioAfectado;documentos;"
+"servicioAfectado;documentos;operacion;"
 )
 @Entity @Getter @Setter
 public class Asistencia extends Solicitud {

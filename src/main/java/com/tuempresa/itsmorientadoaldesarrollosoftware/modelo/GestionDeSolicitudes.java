@@ -21,7 +21,9 @@ public class GestionDeSolicitudes {
 
     @Enumerated(EnumType.STRING)
 	@Column(length = 15)
-    @Required
     @OnChange(AccionCambiarPantalla.class)
     TiposDeSolicitud operacion;
+    @Column(length = 15)
+    String operacionP;
+    
 }
