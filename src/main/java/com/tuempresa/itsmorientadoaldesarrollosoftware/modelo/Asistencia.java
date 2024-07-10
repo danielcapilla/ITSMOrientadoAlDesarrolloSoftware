@@ -9,7 +9,7 @@ import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
 import lombok.*;
 @View(members=
 "solicitante; enunciado; descripcion;tipoDeSolicitud;estadoPadre; transicion;"+
-"servicioAfectado;documentos;operacion;"
+"servicioAfectado;documentos;"
 )
 @Entity @Getter @Setter
 public class Asistencia extends Solicitud {
@@ -32,9 +32,7 @@ public class Asistencia extends Solicitud {
 	        	        value="2") // ... se llena con el valor de producto.numero de la entidad
 	        	)
 	String tipoDeSolicitud;
-    @Column(length=32) 
-    @ReadOnly
-    String operacion;
+
 	@PostLoad
 	private void recalcularEstadoInicial() {
 		if(this.transicion != null)
