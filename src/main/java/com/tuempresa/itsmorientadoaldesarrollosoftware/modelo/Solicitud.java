@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.*;
 import org.openxava.annotations.*;
 
+import com.tuempresa.itsmorientadoaldesarrollosoftware.calculadores.*;
+
 import lombok.*;
 
 @Entity @Getter @Setter
@@ -18,6 +20,7 @@ public class Solicitud {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList()
+	@DefaultValueCalculator(UsuarioInicial.class)
 	Usuario solicitante;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
