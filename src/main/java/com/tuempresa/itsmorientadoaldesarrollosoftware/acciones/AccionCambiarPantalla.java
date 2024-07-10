@@ -36,7 +36,7 @@ public class AccionCambiarPantalla extends OnChangePropertyBaseAction{
 				//showNewView();
 				getView().setModelName(nombreSolicitud);
 				System.out.println(getView().getMembersNames());
-				getView().setValue("operacion", nombreSolicitud);
+				getView().setValue("tipoDeSolicitud", nombreSolicitud);
 				getView().setValue("solicitante", usuario.getNombre());
 				getView().findObject();
 				System.out.println(getView().getValue("operacion"));
