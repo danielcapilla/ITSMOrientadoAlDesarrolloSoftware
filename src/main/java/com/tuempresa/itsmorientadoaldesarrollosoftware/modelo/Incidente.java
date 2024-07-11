@@ -30,7 +30,7 @@ public class Incidente extends Solicitud {
 	Estado estadoSiguiente;
 	*/
 	@ReadOnly
-	@Column(length=20)
+	@Column(length=35)
 	String estadoPadre;
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList( descriptionProperties="transicion",

@@ -15,7 +15,7 @@ import lombok.*;
 public class Cambio  extends Solicitud{
 
 	@ReadOnly
-	@Column(length=20)
+	@Column(length=35)
 	String estadoPadre;
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@DescriptionsList( descriptionProperties="transicion",

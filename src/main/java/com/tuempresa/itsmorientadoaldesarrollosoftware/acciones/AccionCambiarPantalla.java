@@ -18,10 +18,7 @@ public class AccionCambiarPantalla extends OnChangePropertyBaseAction{
 	{
 		try
 		{
-
-
 			TiposDeSolicitud solicitud = (TiposDeSolicitud) getNewValue();
-
 			if(solicitud != null)
 			{
 				String nombreSolicitud = solicitud.name();
@@ -32,18 +29,14 @@ public class AccionCambiarPantalla extends OnChangePropertyBaseAction{
 			            .getSingleResult();
 	            Map key = new HashMap();
 	            key.put("solicitante", usuario);
-	            System.out.println(key);
-				//showNewView();
+				showNewView();
 				getView().setModelName(nombreSolicitud);
-				System.out.println(getView().getMembersNames());
 				getView().setValue("tipoDeSolicitud", nombreSolicitud);
 				getView().setValue("solicitante.nombre", usuario.getNombre());
 				getView().findObject();
-				System.out.println(getView().getValue("operacion"));
-	            getView().setKeyEditable(false);
-	            //getView().setEditable(false);
-				getView().refresh();
-
+				//getView().setKeyEditable(false);
+		        //getView().setEditable(false);
+	            getView().refresh();
 			}
 		}catch(ObjectNotFoundException ex) {
             getView().clear();

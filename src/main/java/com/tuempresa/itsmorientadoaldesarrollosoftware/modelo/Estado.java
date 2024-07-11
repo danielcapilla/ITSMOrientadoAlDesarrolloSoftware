@@ -21,14 +21,14 @@ public class Estado {
     @Column(length=32)
     String oid; // oid para la clase maestra
 	
-	@Column(length=25)
+	@Column(length=35)
 	@Required
 	String estado;
 	
-	@Column(length=25)
+	@Column(length=35)
 	String estadoPadre;
 	
-	@Column(length=25)
+	@Column(length=35)
 	@Required
 	String transicion;
 	
